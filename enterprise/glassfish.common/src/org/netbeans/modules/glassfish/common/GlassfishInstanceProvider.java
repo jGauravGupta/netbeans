@@ -68,7 +68,7 @@ public final class GlassfishInstanceProvider implements ServerInstanceProvider, 
     public static final String JAKARTAEE8_DEPLOYER_FRAGMENT = "deployer:gfv510ee8";
     public static final String JAKARTAEE9_DEPLOYER_FRAGMENT = "deployer:gfv6ee9";
     public static final String JAKARTAEE91_DEPLOYER_FRAGMENT = "deployer:gfv610ee9";
-    public static final String JAKARTAEE10_DEPLOYER_FRAGMENT = "deployer:gfv7ee10";
+    public static final String JAKARTAEE10_DEPLOYER_FRAGMENT = "deployer:gfv700ee10";
     public static final String EE6WC_DEPLOYER_FRAGMENT = "deployer:gfv3ee6wc"; // NOI18N
     public static final String PRELUDE_DEPLOYER_FRAGMENT = "deployer:gfv3"; // NOI18N
     private static String EE6_INSTANCES_PATH = "/GlassFishEE6/Instances"; // NOI18N
