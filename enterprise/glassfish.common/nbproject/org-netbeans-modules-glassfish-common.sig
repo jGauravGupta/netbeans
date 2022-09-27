@@ -1421,7 +1421,7 @@ meth public void addServerInstance(org.netbeans.modules.glassfish.common.Glassfi
 meth public void removeChangeListener(javax.swing.event.ChangeListener)
 meth public void resultChanged(org.openide.util.LookupEvent)
 supr java.lang.Object
-hfds AUTOINSTANCECOPIED,EE6WC_INSTANCES_PATH,EE6_INSTANCES_PATH,EE7_INSTANCES_PATH,EE8_INSTANCES_PATH,JAKARTAEE8_INSTANCES_PATH,JAKARTAEE91_INSTANCES_PATH,JAKARTAEE9_INSTANCES_PATH,LOGGER,activeDisplayNames,cf,displayName,glassFishProvider,instanceMap,instancesDirNames,lookupResult,needsJdk6,noPasswordOptions,support,uriFragments
+hfds AUTOINSTANCECOPIED,EE6WC_INSTANCES_PATH,EE6_INSTANCES_PATH,EE7_INSTANCES_PATH,EE8_INSTANCES_PATH,JAKARTAEE8_INSTANCES_PATH,JAKARTAEE91_INSTANCES_PATH,JAKARTAEE9_INSTANCES_PATH,JAKARTAEE10_INSTANCES_PATH,LOGGER,activeDisplayNames,cf,displayName,glassFishProvider,instanceMap,instancesDirNames,lookupResult,needsJdk6,noPasswordOptions,support,uriFragments
 
 CLSS public org.netbeans.modules.glassfish.common.Installer
 cons public init()
@@ -1508,6 +1508,7 @@ fld public final static org.netbeans.modules.glassfish.common.ServerDetails GLAS
 fld public final static org.netbeans.modules.glassfish.common.ServerDetails GLASSFISH_SERVER_6_2_3
 fld public final static org.netbeans.modules.glassfish.common.ServerDetails GLASSFISH_SERVER_6_2_4
 fld public final static org.netbeans.modules.glassfish.common.ServerDetails GLASSFISH_SERVER_6_2_5
+fld public final static org.netbeans.modules.glassfish.common.ServerDetails GLASSFISH_SERVER_7_0_0
 meth public boolean isInstalledInDirectory(java.io.File)
 meth public int getVersion()
 meth public java.lang.String getDirectUrl()

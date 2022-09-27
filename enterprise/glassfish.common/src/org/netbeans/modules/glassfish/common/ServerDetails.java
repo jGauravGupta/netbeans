@@ -297,7 +297,7 @@ public enum ServerDetails {
      */
     GLASSFISH_SERVER_7_0_0(NbBundle.getMessage(ServerDetails.class, "STR_700_SERVER_NAME", new Object[]{}), // NOI18N
         "deployer:gfv700ee10", // NOI18N
-        625,
+        700,
         "https://repo1.maven.org/maven2/org/glassfish/main/distributions/glassfish/7.0.0-M4/glassfish-7.0.0-M4.zip", // NOI18N
         "https://repo1.maven.org/maven2/org/glassfish/main/distributions/glassfish/7.0.0-M4/glassfish-7.0.0-M4.zip", // NOI18N
         "http://www.eclipse.org/legal/epl-2.0" //NOI18N
