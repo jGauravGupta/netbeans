@@ -1393,8 +1393,9 @@ fld public final static java.lang.String EE7_DEPLOYER_FRAGMENT = "deployer:gfv4e
 fld public final static java.lang.String EE8_DEPLOYER_FRAGMENT = "deployer:gfv5ee8"
 fld public final static java.lang.String GLASSFISH_AUTOREGISTERED_INSTANCE = "glassfish_autoregistered_instance"
 fld public final static java.lang.String JAKARTAEE8_DEPLOYER_FRAGMENT = "deployer:gfv510ee8"
-fld public final static java.lang.String JAKARTAEE91_DEPLOYER_FRAGMENT = "deployer:gfv610ee9"
 fld public final static java.lang.String JAKARTAEE9_DEPLOYER_FRAGMENT = "deployer:gfv6ee9"
+fld public final static java.lang.String JAKARTAEE91_DEPLOYER_FRAGMENT = "deployer:gfv610ee9"
+fld public final static java.lang.String JAKARTAEE10_DEPLOYER_FRAGMENT = "deployer:gfv700ee10"
 fld public final static java.lang.String PRELUDE_DEPLOYER_FRAGMENT = "deployer:gfv3"
 fld public final static java.util.Set<java.lang.String> activeRegistrationSet
 fld public static java.lang.String EE6WC_DEFAULT_NAME
@@ -2234,6 +2235,7 @@ meth public static org.netbeans.modules.glassfish.spi.ServerUtilities getEe8Util
 meth public static org.netbeans.modules.glassfish.spi.ServerUtilities getJakartaEe8Utilities()
 meth public static org.netbeans.modules.glassfish.spi.ServerUtilities getJakartaEe91Utilities()
 meth public static org.netbeans.modules.glassfish.spi.ServerUtilities getJakartaEe9Utilities()
+meth public static org.netbeans.modules.glassfish.spi.ServerUtilities getJakartaEe10Utilities()
 meth public static org.openide.WizardDescriptor$InstantiatingIterator getInstantiatingIterator()
 supr java.lang.Object
 hfds gip,gwp
