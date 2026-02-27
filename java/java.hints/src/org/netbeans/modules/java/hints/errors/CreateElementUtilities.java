@@ -95,6 +95,7 @@ public final class CreateElementUtilities {
 
     private CreateElementUtilities() {}
 
+    // TODO rewrite so that it returns List.of() instead of null. Both states (null and .isEmpty()) are handled interchangeably atm.
     public static List<? extends TypeMirror> resolveType(Set<ElementKind> types, CompilationInfo info, TreePath currentPath, Tree unresolved, int offset, TypeMirror[] typeParameterBound, int[] numTypeParameters) {
         switch (currentPath.getLeaf().getKind()) {
             case METHOD:
@@ -389,9 +390,6 @@ public final class CreateElementUtilities {
             type = info.getTrees().getTypeMirror(new TreePath(parent, at.getExpression()));
 
             if (type != null) {
-                //anonymous class?
-                type = org.netbeans.modules.java.hints.errors.Utilities.convertIfAnonymous(type);
-
                 if (type.getKind() == TypeKind.EXECUTABLE) {
                     //TODO: does not actualy work, attempt to solve situations like:
                     //t = Collections.emptyList()
@@ -562,8 +560,13 @@ public final class CreateElementUtilities {
             return null;
         }
 
+        List<? extends TypeMirror> resolved = resolveType(types, info, parent.getParentPath(), let, offset, null, null);
+        if (resolved == null || resolved.isEmpty()) {
+            return null;
+        }
+
         List<TypeMirror> result = new ArrayList<>();
-        for (TypeMirror target : resolveType(types, info, parent.getParentPath(), let, offset, null, null)) {
+        for (TypeMirror target : resolved) {
             if (!org.netbeans.modules.java.hints.errors.Utilities.isValidType(target) ||
                 target.getKind() != TypeKind.DECLARED) {
                 continue;

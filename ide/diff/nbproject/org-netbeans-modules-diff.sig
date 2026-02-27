@@ -1,5 +1,5 @@
 #Signature file v4.1
-#Version 1.80.0
+#Version 1.82.0
 
 CLSS public abstract interface java.io.Serializable
 
@@ -24,6 +24,7 @@ meth public final java.util.Optional<java.lang.Enum$EnumDesc<{java.lang.Enum%0}>
 meth public java.lang.String toString()
 meth public static <%0 extends java.lang.Enum<{%%0}>> {%%0} valueOf(java.lang.Class<{%%0}>,java.lang.String)
 supr java.lang.Object
+hfds name,ordinal
 
 CLSS public java.lang.Object
 cons public init()
@@ -59,6 +60,7 @@ meth public int getDifferenceCount()
 meth public int getDifferenceIndex()
 meth public javax.swing.JComponent getJComponent()
 meth public static org.netbeans.api.diff.DiffController create(org.netbeans.api.diff.StreamSource,org.netbeans.api.diff.StreamSource) throws java.io.IOException
+meth public static org.netbeans.api.diff.DiffController createEnhanced(org.netbeans.api.diff.DiffController,org.netbeans.api.diff.StreamSource,org.netbeans.api.diff.StreamSource) throws java.io.IOException
 meth public static org.netbeans.api.diff.DiffController createEnhanced(org.netbeans.api.diff.StreamSource,org.netbeans.api.diff.StreamSource) throws java.io.IOException
 meth public void addPropertyChangeListener(java.beans.PropertyChangeListener)
 meth public void removePropertyChangeListener(java.beans.PropertyChangeListener)
