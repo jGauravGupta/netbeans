@@ -117,24 +117,37 @@ public class CommandVersion extends Command {
     }
 
     /**
-     * Verifies if domain directory returned by version command result matches
-     * domain directory of provided Payara server entity.
+     * Verifies if version command result confirms Payara server is running.
+     * <p/>
+     * For local servers, the version returned by the server must match the
+     * version of the local Payara installation. For remote servers, any valid
+     * version response is accepted since the local and remote installations
+     * may differ in version.
      * <p/>
      * @param result Version command result.
      * @param server Payara server entity.
      * @return For local server value of <code>true</code> means that server
      *         major and minor version value matches values returned by version
      *         command and value of <code>false</code> that they differs.
+     *         For remote server value of <code>true</code> means that server
+     *         responded with any valid version string.
      */
     public static boolean verifyResult(
             final ResultString result, final PayaraServer server) {
         boolean verifyResult = false;
         String value = ServerUtils.getVersionString(result.getValue());
         if (value != null) {
-            PayaraPlatformVersionAPI valueVersion = PayaraPlatformVersion.toValue(value);
-            PayaraPlatformVersionAPI serverVersion = server.getPlatformVersion();
-            if (valueVersion != null && serverVersion != null) {
-                verifyResult = serverVersion.equals(valueVersion);
+            if (server.isRemote()) {
+                // For remote servers, any valid version response confirms the
+                // server is running. Version matching against the local
+                // installation is not required since they may differ.
+                verifyResult = true;
+            } else {
+                PayaraPlatformVersionAPI valueVersion = PayaraPlatformVersion.toValue(value);
+                PayaraPlatformVersionAPI serverVersion = server.getPlatformVersion();
+                if (valueVersion != null && serverVersion != null) {
+                    verifyResult = serverVersion.equals(valueVersion);
+                }
             }
         }
         return verifyResult;
