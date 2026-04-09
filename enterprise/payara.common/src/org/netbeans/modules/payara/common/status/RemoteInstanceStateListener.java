@@ -44,11 +44,11 @@ import org.netbeans.modules.payara.tooling.data.PayaraStatusTask;
  * </ul>
  * <p/>
  * For every Payara server instance being monitored there must be its own
- * {@code VersionMismatchStateListener} instance to avoid duplicate popups.
+ * {@code RemoteInstanceStateListener} instance to avoid duplicate popups.
  * <p/>
  * @author Payara Team
  */
-public class VersionMismatchStateListener extends BasicStateListener {
+public class RemoteInstanceStateListener extends BasicStateListener {
 
     // Class attributes                                                       //
     /** Minimal delay between displaying warning popups [ms].
@@ -63,9 +63,9 @@ public class VersionMismatchStateListener extends BasicStateListener {
 
     // Constructors                                                           //
     /**
-     * Constructs an instance of the version mismatch notification handler.
+     * Constructs an instance of the remote instance state notification handler.
      */
-    public VersionMismatchStateListener() {
+    public RemoteInstanceStateListener() {
         super();
         this.lastTm = 0;
     }
@@ -126,17 +126,17 @@ public class VersionMismatchStateListener extends BasicStateListener {
         }
         TaskEvent event = task.getEvent();
         if (event == TaskEvent.VERSION_MISMATCH) {
-            maybeShowPopup(server, "VersionMismatchStateListener.versionMismatch",
+            maybeShowPopup(server, "RemoteInstanceStateListener.versionMismatch",
                     server.getName());
         } else if (event == TaskEvent.EXCEPTION) {
             // Connection failed — wrong host or port configured for the server.
-            maybeShowPopup(server, "VersionMismatchStateListener.connectionFailed",
+            maybeShowPopup(server, "RemoteInstanceStateListener.connectionFailed",
                     server.getName(), server.getHost(),
                     Integer.toString(server.getAdminPort()));
         } else if (event == TaskEvent.CMD_EXCEPTION) {
             // constructCommandUrl() could not build a valid URL — host/port
             // value is malformed.
-            maybeShowPopup(server, "VersionMismatchStateListener.commandUrlFailed",
+            maybeShowPopup(server, "RemoteInstanceStateListener.commandUrlFailed",
                     server.getName(), server.getHost(),
                     Integer.toString(server.getAdminPort()));
         }
@@ -160,7 +160,7 @@ public class VersionMismatchStateListener extends BasicStateListener {
             lastTm = now;
         }
         String message = NbBundle.getMessage(
-                VersionMismatchStateListener.class, bundleKey, args);
+                RemoteInstanceStateListener.class, bundleKey, args);
         NotifyDescriptor nd = new NotifyDescriptor.Message(
                 message, NotifyDescriptor.WARNING_MESSAGE);
         DialogDisplayer.getDefault().notifyLater(nd);

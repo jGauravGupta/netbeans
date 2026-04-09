@@ -24,7 +24,7 @@ import org.netbeans.modules.payara.tooling.PayaraStatus;
 import org.netbeans.modules.payara.tooling.data.PayaraPlatformVersionAPI;
 import org.netbeans.modules.payara.common.status.AuthFailureStateListener;
 import org.netbeans.modules.payara.common.status.MonitoringInitStateListener;
-import org.netbeans.modules.payara.common.status.VersionMismatchStateListener;
+import org.netbeans.modules.payara.common.status.RemoteInstanceStateListener;
 import org.openide.util.NbBundle;
 import org.netbeans.modules.payara.tooling.data.PayaraServer;
 import org.netbeans.modules.payara.tooling.data.PayaraServerStatus;
@@ -115,9 +115,9 @@ public class PayaraState {
                     PayaraStatus.addChangeListener(instance, authListener, PayaraStatus.STARTUP);
                     PayaraStatus.addErrorListener(instance, authListener);
                 }
-                VersionMismatchStateListener versionMismatchListener
-                        = new VersionMismatchStateListener();
-                PayaraStatus.addErrorListener(instance, versionMismatchListener);
+                RemoteInstanceStateListener remoteInstanceListener
+                        = new RemoteInstanceStateListener();
+                PayaraStatus.addErrorListener(instance, remoteInstanceListener);
                 try {
                     long startTime = System.currentTimeMillis();
                     long waitTime = INIT_MONITORING_TIMEOUT; 
