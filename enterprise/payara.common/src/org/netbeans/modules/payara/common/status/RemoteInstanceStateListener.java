@@ -37,10 +37,10 @@ import org.netbeans.modules.payara.tooling.data.PayaraStatusTask;
  *       locally registered installation ({@link TaskEvent#VERSION_MISMATCH}).</li>
  *   <li>A connection failure occurred reaching the administration interface —
  *       typically caused by a wrong host name or port number configured in the
- *       server registration ({@link TaskEvent#EXCEPTION}).</li>
+ *       server registration ({@link TaskEvent#CONNECTION_FAILED}).</li>
  *   <li>The administration command URL could not be constructed from the
  *       configured host/port values — the values may be malformed
- *       ({@link TaskEvent#CMD_EXCEPTION}).</li>
+ *       ({@link TaskEvent#CMD_URL_FAILED}).</li>
  * </ul>
  * <p/>
  * For every Payara server instance being monitored there must be its own
@@ -109,9 +109,9 @@ public class RemoteInstanceStateListener extends BasicStateListener {
      * <ul>
      *   <li>{@link TaskEvent#VERSION_MISMATCH} — server version differs from
      *       the locally registered installation.</li>
-     *   <li>{@link TaskEvent#EXCEPTION} — connection failed; likely caused by
+     *   <li>{@link TaskEvent#CONNECTION_FAILED} — connection failed; likely caused by
      *       a wrong host name or administration port.</li>
-     *   <li>{@link TaskEvent#CMD_EXCEPTION} — the administration command URL
+     *   <li>{@link TaskEvent#CMD_URL_FAILED} — the administration command URL
      *       could not be constructed from the configured host/port values.</li>
      * </ul>
      * <p/>
@@ -128,12 +128,12 @@ public class RemoteInstanceStateListener extends BasicStateListener {
         if (event == TaskEvent.VERSION_MISMATCH) {
             maybeShowPopup(server, "RemoteInstanceStateListener.versionMismatch",
                     server.getName());
-        } else if (event == TaskEvent.EXCEPTION) {
+        } else if (event == TaskEvent.CONNECTION_FAILED) {
             // Connection failed — wrong host or port configured for the server.
             maybeShowPopup(server, "RemoteInstanceStateListener.connectionFailed",
                     server.getName(), server.getHost(),
                     Integer.toString(server.getAdminPort()));
-        } else if (event == TaskEvent.CMD_EXCEPTION) {
+        } else if (event == TaskEvent.CMD_URL_FAILED) {
             // constructCommandUrl() could not build a valid URL — host/port
             // value is malformed.
             maybeShowPopup(server, "RemoteInstanceStateListener.commandUrlFailed",
