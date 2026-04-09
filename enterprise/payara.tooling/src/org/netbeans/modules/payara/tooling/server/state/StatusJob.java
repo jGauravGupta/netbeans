@@ -298,7 +298,7 @@ public class StatusJob {
                                             event));
                                     break;
                                 }
-                                // COMPLETED but version verify failed.
+                                // COMPLETED but versions do not match.
                                 // For remote servers, accept the server as
                                 // running (SUCCESS) but fire VERSION_MISMATCH
                                 // so the user is notified via a warning popup.
