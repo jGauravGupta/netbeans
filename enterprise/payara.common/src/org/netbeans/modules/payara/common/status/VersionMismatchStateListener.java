@@ -28,13 +28,20 @@ import org.netbeans.modules.payara.tooling.data.PayaraServer;
 import org.netbeans.modules.payara.tooling.data.PayaraStatusTask;
 
 /**
- * Handle version mismatch and command URL construction failures in
- * administration command calls during server status monitoring.
+ * Handle version mismatch and connection/URL failures in administration command
+ * calls during server status monitoring.
  * <p/>
- * Displays a warning notification to the user when the version reported by
- * a remote Payara server differs from the locally registered installation, or
- * when the administration command URL cannot be constructed (e.g. incorrect
- * host configuration).
+ * Displays a warning notification to the user in three cases:
+ * <ul>
+ *   <li>The version reported by a remote Payara server differs from the
+ *       locally registered installation ({@link TaskEvent#VERSION_MISMATCH}).</li>
+ *   <li>A connection failure occurred reaching the administration interface —
+ *       typically caused by a wrong host name or port number configured in the
+ *       server registration ({@link TaskEvent#EXCEPTION}).</li>
+ *   <li>The administration command URL could not be constructed from the
+ *       configured host/port values — the values may be malformed
+ *       ({@link TaskEvent#CMD_EXCEPTION}).</li>
+ * </ul>
  * <p/>
  * For every Payara server instance being monitored there must be its own
  * {@code VersionMismatchStateListener} instance to avoid duplicate popups.
@@ -98,8 +105,15 @@ public class VersionMismatchStateListener extends BasicStateListener {
     /**
      * Callback to notify about server status check failures.
      * <p/>
-     * Shows a non-blocking warning popup for version mismatch and
-     * command URL construction errors on the VERSION check.
+     * Shows a non-blocking warning popup on the VERSION check for:
+     * <ul>
+     *   <li>{@link TaskEvent#VERSION_MISMATCH} — server version differs from
+     *       the locally registered installation.</li>
+     *   <li>{@link TaskEvent#EXCEPTION} — connection failed; likely caused by
+     *       a wrong host name or administration port.</li>
+     *   <li>{@link TaskEvent#CMD_EXCEPTION} — the administration command URL
+     *       could not be constructed from the configured host/port values.</li>
+     * </ul>
      * <p/>
      * @param server Payara server instance being monitored.
      * @param task   Payara server status check task details.
@@ -114,8 +128,15 @@ public class VersionMismatchStateListener extends BasicStateListener {
         if (event == TaskEvent.VERSION_MISMATCH) {
             maybeShowPopup(server, "VersionMismatchStateListener.versionMismatch",
                     server.getName());
+        } else if (event == TaskEvent.EXCEPTION) {
+            // Connection failed — wrong host or port configured for the server.
+            maybeShowPopup(server, "VersionMismatchStateListener.connectionFailed",
+                    server.getName(), server.getHost(),
+                    Integer.toString(server.getAdminPort()));
         } else if (event == TaskEvent.CMD_EXCEPTION) {
-            maybeShowPopup(server, "VersionMismatchStateListener.commandException",
+            // constructCommandUrl() could not build a valid URL — host/port
+            // value is malformed.
+            maybeShowPopup(server, "VersionMismatchStateListener.commandUrlFailed",
                     server.getName(), server.getHost(),
                     Integer.toString(server.getAdminPort()));
         }
