@@ -119,38 +119,56 @@ public class CommandVersion extends Command {
     /**
      * Verifies if version command result confirms Payara server is running.
      * <p/>
-     * For local servers, the version returned by the server must match the
-     * version of the local Payara installation. For remote servers, any valid
-     * version response is accepted since the local and remote installations
-     * may differ in version.
+     * The version returned by the server must match the version of the local
+     * Payara installation. Both major and minor version values are compared.
      * <p/>
      * @param result Version command result.
      * @param server Payara server entity.
-     * @return For local server value of <code>true</code> means that server
-     *         major and minor version value matches values returned by version
-     *         command and value of <code>false</code> that they differs.
-     *         For remote server value of <code>true</code> means that server
-     *         responded with any valid version string.
+     * @return Value of <code>true</code> means that server major and minor
+     *         version value matches values returned by version command and
+     *         value of <code>false</code> that they differ or a comparison
+     *         could not be made.
      */
     public static boolean verifyResult(
             final ResultString result, final PayaraServer server) {
         boolean verifyResult = false;
         String value = ServerUtils.getVersionString(result.getValue());
         if (value != null) {
-            if (server.isRemote()) {
-                // For remote servers, any valid version response confirms the
-                // server is running. Version matching against the local
-                // installation is not required since they may differ.
-                verifyResult = true;
-            } else {
-                PayaraPlatformVersionAPI valueVersion = PayaraPlatformVersion.toValue(value);
-                PayaraPlatformVersionAPI serverVersion = server.getPlatformVersion();
-                if (valueVersion != null && serverVersion != null) {
-                    verifyResult = serverVersion.equals(valueVersion);
-                }
+            PayaraPlatformVersionAPI valueVersion = PayaraPlatformVersion.toValue(value);
+            PayaraPlatformVersionAPI serverVersion = server.getPlatformVersion();
+            if (valueVersion != null && serverVersion != null) {
+                verifyResult = serverVersion.equals(valueVersion);
             }
         }
         return verifyResult;
+    }
+
+    /**
+     * Checks whether the version returned by the server is a known mismatch
+     * against the locally registered Payara installation.
+     * <p/>
+     * A version mismatch is reported only when both the server response and
+     * the local installation carry parseable version information that differs.
+     * When either side is unknown this method returns <code>false</code>.
+     * <p/>
+     * @param result Version command result.
+     * @param server Payara server entity.
+     * @return Value of <code>true</code> when the server responded with a
+     *         version that is different from the locally registered version,
+     *         or <code>false</code> when the versions match or comparison
+     *         could not be performed.
+     */
+    public static boolean isVersionMismatch(
+            final ResultString result, final PayaraServer server) {
+        String value = ServerUtils.getVersionString(result.getValue());
+        if (value != null) {
+            PayaraPlatformVersionAPI valueVersion = PayaraPlatformVersion.toValue(value);
+            PayaraPlatformVersionAPI serverVersion = server.getPlatformVersion();
+            if (valueVersion != null && serverVersion != null) {
+                return !serverVersion.equals(valueVersion);
+            }
+        }
+        return false;
     }
 
     // Constructors                                                           //

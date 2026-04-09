@@ -65,7 +65,10 @@ public enum TaskEvent {
     /** Java VM execution failed. */
     JAVA_VM_EXEC_FAILED,
     /** Signals wrong proxy settings. */
-    BAD_GATEWAY;
+    BAD_GATEWAY,
+
+    /** Version returned by server does not match expected version. */
+    VERSION_MISMATCH;
 
     // Class attributes                                                       //
     /**  A <code>String</code> representation of SUBMIT value. */
@@ -118,6 +121,9 @@ public enum TaskEvent {
     
     /** A <code>String</code> representation of BAD_GATEWAY value. */
     private static final String BAD_GATEWAY_STR = "BadGateway";
+
+    /** A <code>String</code> representation of VERSION_MISMATCH value. */
+    private static final String VERSION_MISMATCH_STR = "VersionMismatch";
 
     /** 
      * Stored <code>String</code> values for backward <code>String</code>
@@ -180,6 +186,7 @@ public enum TaskEvent {
             case WRONG_JAVA_VM:       return WRONG_JAVA_VM_STR;
             case JAVA_VM_EXEC_FAILED: return JAVA_VM_EXEC_FAILED_STR;
             case BAD_GATEWAY:         return BAD_GATEWAY_STR;
+            case VERSION_MISMATCH:    return VERSION_MISMATCH_STR;
             // This is unrecheable. Returned null value means that some
             // enum value is not handled correctly.
             default:            return null;
