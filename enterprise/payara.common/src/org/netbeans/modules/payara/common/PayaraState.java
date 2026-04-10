@@ -115,9 +115,11 @@ public class PayaraState {
                     PayaraStatus.addChangeListener(instance, authListener, PayaraStatus.STARTUP);
                     PayaraStatus.addErrorListener(instance, authListener);
                 }
-                RemoteInstanceStateListener remoteInstanceListener
-                        = new RemoteInstanceStateListener();
-                PayaraStatus.addErrorListener(instance, remoteInstanceListener);
+                if (instance.isRemote()) {
+                    RemoteInstanceStateListener remoteInstanceListener
+                            = new RemoteInstanceStateListener();
+                    PayaraStatus.addErrorListener(instance, remoteInstanceListener);
+                }
                 try {
                     long startTime = System.currentTimeMillis();
                     long waitTime = INIT_MONITORING_TIMEOUT; 
