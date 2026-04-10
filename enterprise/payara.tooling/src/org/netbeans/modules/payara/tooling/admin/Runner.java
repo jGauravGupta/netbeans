@@ -857,7 +857,7 @@ public abstract class Runner implements Callable<Result> {
         try {
             commandUrl = constructCommandUrl();
         } catch (CommandException ce) {
-            return handleStateChange(TaskState.FAILED, TaskEvent.CMD_URL_FAILED,
+            return handleStateChange(TaskState.FAILED, TaskEvent.CMD_EXCEPTION,
                     stateChangeArgs(ce.getLocalizedMessage()));
         }
         // disable ("version".equals(cmd) || "__locations".equals(cmd)) ? 1 : 3;

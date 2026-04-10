@@ -38,9 +38,9 @@ import org.netbeans.modules.payara.tooling.data.PayaraStatusTask;
  *   <li>A connection failure occurred reaching the administration interface —
  *       typically caused by a wrong host name or port number configured in the
  *       server registration ({@link TaskEvent#CONNECTION_FAILED}).</li>
- *   <li>The administration command URL could not be constructed from the
- *       configured host/port values — the values may be malformed
- *       ({@link TaskEvent#CMD_URL_FAILED}).</li>
+ *   <li>An exception was thrown while constructing the administration command —
+ *       the configured host/port values may be malformed
+ *       ({@link TaskEvent#CMD_EXCEPTION}).</li>
  * </ul>
  * <p/>
  * For every Payara server instance being monitored there must be its own
@@ -111,8 +111,8 @@ public class RemoteInstanceStateListener extends BasicStateListener {
      *       the locally registered installation.</li>
      *   <li>{@link TaskEvent#CONNECTION_FAILED} — connection failed; likely caused by
      *       a wrong host name or administration port.</li>
-     *   <li>{@link TaskEvent#CMD_URL_FAILED} — the administration command URL
-     *       could not be constructed from the configured host/port values.</li>
+     *   <li>{@link TaskEvent#CMD_EXCEPTION} — an exception was thrown while
+     *       constructing the administration command; host/port may be malformed.</li>
      * </ul>
      * <p/>
      * @param server Payara server instance being monitored.
@@ -133,10 +133,10 @@ public class RemoteInstanceStateListener extends BasicStateListener {
             showWarningNotification(server, "RemoteInstanceStateListener.connectionFailed",
                     server.getName(), server.getHost(),
                     Integer.toString(server.getAdminPort()));
-        } else if (event == TaskEvent.CMD_URL_FAILED) {
-            // constructCommandUrl() could not build a valid URL — host/port
-            // value is malformed.
-            showWarningNotification(server, "RemoteInstanceStateListener.commandUrlFailed",
+        } else if (event == TaskEvent.CMD_EXCEPTION) {
+            // constructCommandUrl() threw a CommandException — host/port
+            // value may be malformed.
+            showWarningNotification(server, "RemoteInstanceStateListener.commandException",
                     server.getName(), server.getHost(),
                     Integer.toString(server.getAdminPort()));
         }
