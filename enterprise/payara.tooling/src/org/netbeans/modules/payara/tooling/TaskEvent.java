@@ -199,7 +199,7 @@ public enum TaskEvent {
             case VERSION_MISMATCH:    return VERSION_MISMATCH_STR;
             case CONNECTION_FAILED:   return CONNECTION_FAILED_STR;
             case CMD_URL_FAILED:      return CMD_URL_FAILED_STR;
-            // This is unrecheable. Returned null value means that some
+            // This is unreachable. Returned null value means that some
             // enum value is not handled correctly.
             default:            return null;
         }

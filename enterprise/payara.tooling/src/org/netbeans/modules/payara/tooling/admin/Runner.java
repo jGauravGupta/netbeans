@@ -857,7 +857,7 @@ public abstract class Runner implements Callable<Result> {
         try {
             commandUrl = constructCommandUrl();
         } catch (CommandException ce) {
-            return handleStateChange(TaskState.FAILED, TaskEvent.CMD_EXCEPTION,
+            return handleStateChange(TaskState.FAILED, TaskEvent.CMD_URL_FAILED,
                     stateChangeArgs(ce.getLocalizedMessage()));
         }
         // disable ("version".equals(cmd) || "__locations".equals(cmd)) ? 1 : 3;
@@ -902,7 +902,7 @@ public abstract class Runner implements Callable<Result> {
                     retries = 0;
                 } catch (ConnectException ce) {
                     return handleStateChange(TaskState.FAILED,
-                            TaskEvent.EXCEPTION,
+                            TaskEvent.CONNECTION_FAILED,
                             stateChangeArgs(ce.getLocalizedMessage()));
                 } catch (IOException ex) {
                     if (retries <= 0) {

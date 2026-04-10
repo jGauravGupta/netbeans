@@ -314,15 +314,9 @@ public class StatusJob {
                                     break;
                                 }
                             case FAILED:
-                                TaskEvent mappedEvent = event;
-                                if (event == TaskEvent.EXCEPTION) {
-                                    mappedEvent = TaskEvent.CONNECTION_FAILED;
-                                } else if (event == TaskEvent.CMD_EXCEPTION) {
-                                    mappedEvent = TaskEvent.CMD_URL_FAILED;
-                                }
                                 job.version.setResult(new StatusResultVersion(taskResult,
                                         PayaraStatusCheckResult.FAILED,
-                                        mappedEvent));
+                                        event));
                                 notifyError = true;
                                 break;
                         }
