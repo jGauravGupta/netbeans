@@ -249,14 +249,14 @@ public class QueryBuilderResultTable extends JTable
     class ResultTablePopupListener extends MouseAdapter {
 
         public void mousePressed(MouseEvent e) {
-            maybeShowPopup(e);
+            showPopupMenuIfTriggered(e);
         }
 
         public void mouseReleased(MouseEvent e) {
             mousePressed(e);
         }
 
-        private void maybeShowPopup(MouseEvent e) {
+        private void showPopupMenuIfTriggered(MouseEvent e) {
             if (e.isPopupTrigger()) {
                 JTable source = (JTable)(e.getSource());
                 int row = source.rowAtPoint(e.getPoint());

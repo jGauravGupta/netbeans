@@ -515,14 +515,14 @@ public class QueryBuilderSqlTextArea extends JEditorPane
         }
         
         public void mousePressed(MouseEvent e) {
-            maybeShowPopup(e);
+            showPopupMenuIfTriggered(e);
         }
         
         public void mouseReleased(MouseEvent e) {
             mousePressed(e);
         }
         
-        private void maybeShowPopup(MouseEvent e) {
+        private void showPopupMenuIfTriggered(MouseEvent e) {
             if (e.isPopupTrigger()) {
                 // this check is added to fix a bug where the popup menu
                 // remains disabled when the user has removed the last table

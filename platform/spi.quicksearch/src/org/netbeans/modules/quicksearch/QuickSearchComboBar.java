@@ -170,7 +170,7 @@ public class QuickSearchComboBar extends AbstractQuickSearchComboBar {
     }
 
     private void jLabel2MousePressed(java.awt.event.MouseEvent evt) {
-        maybeShowPopup(evt);
+        showCategoryPopup(evt);
     }
 
     private javax.swing.JLabel jLabel2;

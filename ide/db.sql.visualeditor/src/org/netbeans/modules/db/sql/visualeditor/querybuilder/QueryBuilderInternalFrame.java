@@ -295,14 +295,14 @@ public class QueryBuilderInternalFrame extends JInternalFrame
     
     class TableColumnPopupListener extends MouseAdapter {
         public void mousePressed(MouseEvent e) {
-            maybeShowPopup(e);
+            showPopupMenuIfTriggered(e);
         }
 
         public void mouseReleased(MouseEvent e) {
-            maybeShowPopup(e);
+            showPopupMenuIfTriggered(e);
         }
 
-        private void maybeShowPopup(MouseEvent e) {
+        private void showPopupMenuIfTriggered(MouseEvent e) {
             if (e.isPopupTrigger()) {
                 _tableColumnPopup.show(e.getComponent(),
                                        e.getX(), e.getY());

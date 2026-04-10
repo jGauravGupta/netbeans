@@ -70,7 +70,7 @@ public class AquaQuickSearchComboBar extends AbstractQuickSearchComboBar {
         res.putClientProperty("JTextField.Search.FindPopup", dummy);
         res.putClientProperty("JTextField.Search.FindAction", new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                maybeShowPopup(null);
+                showCategoryPopup(null);
             }
         });
 

@@ -126,17 +126,17 @@ public class RemoteInstanceStateListener extends BasicStateListener {
         }
         TaskEvent event = task.getEvent();
         if (event == TaskEvent.VERSION_MISMATCH) {
-            maybeShowPopup(server, "RemoteInstanceStateListener.versionMismatch",
+            showWarningNotification(server, "RemoteInstanceStateListener.versionMismatch",
                     server.getName());
         } else if (event == TaskEvent.CONNECTION_FAILED) {
             // Connection failed — wrong host or port configured for the server.
-            maybeShowPopup(server, "RemoteInstanceStateListener.connectionFailed",
+            showWarningNotification(server, "RemoteInstanceStateListener.connectionFailed",
                     server.getName(), server.getHost(),
                     Integer.toString(server.getAdminPort()));
         } else if (event == TaskEvent.CMD_URL_FAILED) {
             // constructCommandUrl() could not build a valid URL — host/port
             // value is malformed.
-            maybeShowPopup(server, "RemoteInstanceStateListener.commandUrlFailed",
+            showWarningNotification(server, "RemoteInstanceStateListener.commandUrlFailed",
                     server.getName(), server.getHost(),
                     Integer.toString(server.getAdminPort()));
         }
@@ -150,7 +150,7 @@ public class RemoteInstanceStateListener extends BasicStateListener {
      * @param bundleKey  NbBundle key for the message text.
      * @param args       Arguments to the bundle message.
      */
-    private void maybeShowPopup(final PayaraServer server,
+    private void showWarningNotification(final PayaraServer server,
             final String bundleKey, final Object... args) {
         long now = System.currentTimeMillis();
         synchronized (this) {

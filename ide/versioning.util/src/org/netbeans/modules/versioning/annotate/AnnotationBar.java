@@ -319,14 +319,14 @@ final class AnnotationBar extends JComponent implements Accessible, PropertyChan
 
         this.addMouseListener(new MouseAdapter() {
             public void mousePressed(MouseEvent e) {
-                maybeShowPopup(e);
+                showPopupMenuIfTriggered(e);
             }
 
             public void mouseReleased(MouseEvent e) {
-                maybeShowPopup(e);
+                showPopupMenuIfTriggered(e);
             }
 
-            private void maybeShowPopup(MouseEvent e) {
+            private void showPopupMenuIfTriggered(MouseEvent e) {
                 if (e.isPopupTrigger()) {
                     e.consume();
                     createPopup(getLineFromMouseEvent(e)).show(e.getComponent(),

@@ -473,14 +473,14 @@ public class QueryBuilderGraphFrame extends JPanel
     class TableTitlePopupListener extends MouseAdapter {
         
         public void mousePressed(MouseEvent e) {
-            maybeShowPopup(e);
+            showPopupMenuIfTriggered(e);
         }
         
         public void mouseReleased(MouseEvent e) {
-            maybeShowPopup(e);
+            showPopupMenuIfTriggered(e);
         }
         
-        private void maybeShowPopup(MouseEvent e) {
+        private void showPopupMenuIfTriggered(MouseEvent e) {
             if (e.isPopupTrigger() && e.getComponent().isEnabled()) {
                 _tableTitlePopup.show(e.getComponent(),
                         e.getX(), e.getY());
