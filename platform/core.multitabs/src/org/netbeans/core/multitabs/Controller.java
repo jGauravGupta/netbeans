@@ -138,12 +138,12 @@ public final class Controller implements MouseListener {
 
     @Override
     public void mousePressed( MouseEvent e ) {
-        maybeShowPopup( e );
+        showPopupMenuIfTriggered( e );
     }
 
     @Override
     public void mouseReleased( MouseEvent e ) {
-        maybeShowPopup( e );
+        showPopupMenuIfTriggered( e );
     }
 
     @Override
@@ -154,7 +154,7 @@ public final class Controller implements MouseListener {
     public void mouseExited( MouseEvent e ) {
     }
 
-    private void maybeShowPopup( MouseEvent e ) {
+    private void showPopupMenuIfTriggered( MouseEvent e ) {
         if( !e.isPopupTrigger() )
             return;
         Point p = e.getPoint();

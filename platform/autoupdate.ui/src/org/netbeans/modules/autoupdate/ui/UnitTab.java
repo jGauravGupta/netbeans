@@ -854,17 +854,17 @@ public final class UnitTab extends javax.swing.JPanel {
         
         @Override
         public void mousePressed (MouseEvent e) {
-            maybeShowPopup (e);
+            showPopupMenuIfTriggered (e);
         }
         
         @Override
         public void mouseReleased (MouseEvent e) {
-            maybeShowPopup (e);
+            showPopupMenuIfTriggered (e);
         }
         
         @Override
         public void mouseClicked (MouseEvent e) {
-            if (!maybeShowPopup (e)) {
+            if (!showPopupMenuIfTriggered (e)) {
                 int row = UnitTab.this.table.rowAtPoint(e.getPoint());
                 if (model.isExpansionControlAtRow(row)) {
                     moreAction.unitChanged(row, null);
@@ -878,7 +878,7 @@ public final class UnitTab extends javax.swing.JPanel {
             }
         }
         
-        private boolean maybeShowPopup (MouseEvent e) {
+        private boolean showPopupMenuIfTriggered (MouseEvent e) {
             if (e.isPopupTrigger ()) {  
                 focusTable ();
                 showPopup (e.getPoint (), e.getComponent ());

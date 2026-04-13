@@ -182,7 +182,7 @@ public abstract class AbstractQuickSearchComboBar extends javax.swing.JPanel {
         } else if (evt.getKeyCode() == KeyEvent.VK_F10 &&
                 evt.isShiftDown()) {
             evt.consume();
-            maybeShowPopup(null);
+            showCategoryPopup(null);
         }
     }
 
@@ -241,7 +241,7 @@ public abstract class AbstractQuickSearchComboBar extends javax.swing.JPanel {
         CommandEvaluator.dropTemporaryCat();
     }
 
-    protected void maybeShowPopup (MouseEvent evt) {
+    protected void showCategoryPopup (MouseEvent evt) {
         if (evt != null && !SwingUtilities.isLeftMouseButton(evt)) {
             return;
         }

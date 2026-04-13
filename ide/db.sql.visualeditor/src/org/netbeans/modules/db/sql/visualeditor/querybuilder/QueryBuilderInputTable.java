@@ -341,14 +341,14 @@ public class QueryBuilderInputTable extends JTable
         public void mousePressed(MouseEvent e) {
             JTable source = (JTable)(e.getSource());
 
-            maybeShowPopup(e);
+            showPopupMenuIfTriggered(e);
         }
 
         public void mouseReleased(MouseEvent e) {
             mousePressed(e);
         }
 
-        private void maybeShowPopup(MouseEvent e) {
+        private void showPopupMenuIfTriggered(MouseEvent e) {
             if (e.isPopupTrigger()) {
                 JTable source = (JTable)(e.getSource());
 
